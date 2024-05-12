@@ -1,0 +1,111 @@
+const question = document.querySelector('#question');
+const choices = Array.from(document.querySelectorAll('.choice-text'));
+const progressText = document.querySelector('#progressText');
+const scoreText = document.querySelector('#score');
+const progressBarFull = document.querySelector('#progressBarFull');
+
+let curretQuestion = {}
+let acceptingAnswers = true;
+let score = 0;
+let questionCounter = 0;
+let availableQuestions = []
+
+let questions = [
+    {
+        question: "What is the Hottest Planet in the Sollar System?",
+        choices1: 'Venus',
+        choices2: 'Earth',
+        choices3: 'Satturn',
+        choices4: 'Pluto',
+        answer: 'Venus',
+    },
+    {
+        question: "How many Islands are there in the Philippines?",
+        choices1: '7,356',
+        choices2: '7,771',
+        choices3: '5,535',
+        choices4: '7,641',
+        answer: '7,641',
+    },
+    {
+        question: "What is the Smallest Country?",
+        choices1: 'China',
+        choices2: 'Vatican City',
+        choices3: '5,Philippines',
+        choices4: 'Japan',
+        answer: 'Vatican City',
+    },
+    {
+        question: "The tallest building in the world is located in which city?",
+        choices1: 'Shanghai',
+        choices2: 'New York',
+        choices3: 'Dudai',
+        choices4: 'Japan',
+        answer: 'Dubai',
+    },
+]
+
+const SCORE_POINTS = 100
+const MAX_QUESTIONS = 4;
+
+startGame = () =>{
+    questionCounter = 0;
+    score = 0;
+    availableQuestions = [...questions]
+    getNewQuestion()
+}
+
+getNewQuestion = () =>{
+    if(availableQuestions.length === 0 || questionCounter > MAX_QUESTIONS){
+        localStorage.setItem('mostRecentScore', score);
+
+        return window.location.assign('end.html');
+    }
+
+    questionCounter++
+    progressText.innerHTML = `Question ${questionCounter} off ${MAX_QUESTIONS}`
+    progressBarFull.style.width = `${(questionCounter/MAX_QUESTIONS) * 100}%`
+
+    const questionIndex = Math.floor(Math.random() * availableQuestions.length);
+    curretQuestion = availableQuestions[questionIndex];
+    question.innerText = curretQuestion.question
+
+    choices.forEach(choice =>{
+        const number = choice.dataset['number'];
+        choice.innerText = curretQuestion['choice' + number];
+    });
+
+    availableQuestions.splice(questionIndex, 1)
+
+    acceptingAnswers = true;
+}
+
+choices.forEach(choice =>{
+    choice.addEventListener('click', e => {
+        if(!acceptingAnswers) return
+        acceptingAnswers = false;
+        const selectedChoice = e.target;
+        const selectedAnswer = selectedChoice.dataset['number'];
+
+        let classToApply = selectedAnswer == curretQuestion.answer ? 'correct' : 'incorrect'
+
+        if(classToApply === 'correct'){
+            incrementScore(SCORE_POINTS)
+        }
+
+        selectedChoice.parentElement.classList.add(classToApply)
+
+        setTimeout(() =>{
+            selectedChoice.parentElement.classList.remove(classToApply);
+            getNewQuestion()
+
+        }, 1000)
+    })
+})
+
+incrementScore = num =>{
+    score += num;
+    scoreText.innerText = score;
+}
+
+startGame()

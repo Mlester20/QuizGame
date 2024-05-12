@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Game</title>
+    <link rel="stylesheet" href="game_mechanics.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+
+    <div class="container">
+        <div id="home" class="flex-column flex-center">
+            <h2 style="color: #fff;">Tips how to Play</h2>
+            <p class="tips1" id="tip1"></p>
+            <p class="tips2" id="tip2"></p>
+            <p class="tips3" id="tip3"></p>
+            <p class="tips4" id="tip4"></p>
+            <a href="game.html" style="margin-top: 3rem;" class="btn">Play</a>
+        </div>
+    </div>
+    
+    
+
+
+    <script>
+
+        var tip1 = "1. You need to answer all the Question";
+        var tip2 = "2. You will enter your name after game to save into leader boards";
+        var tip3 = "3. Read the questions properly";
+        var tip4 = "4. Stay Confident to beat the No. 1 in leader board";
+
+        document.getElementById('tip1').innerText = tip1;
+        document.getElementById('tip2').innerText = tip2;
+        document.getElementById('tip3').innerText = tip3;
+        document.getElementById('tip4').innerText = tip4;
+
+    </script>
+
+</body>
+</html>

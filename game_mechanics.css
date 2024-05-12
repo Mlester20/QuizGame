@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Nova+Square&display=swap');
+
+:root{
+    background-color: rgb(29, 26, 26);
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.flex-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.flex-center {
+    justify-content: center;
+    align-items: center;
+}
+
+#home {
+    text-align: center;
+}
+
+#home h2 {
+    color: #fff; /* White font color */
+    font-family: 'Arial', sans-serif; /* Font family */
+}
+
+#home p {
+    margin: 10px 0;
+    font-size: 1.1rem;
+    line-height: 1.5;
+    color: #fff; /* White font color */
+    font-family: 'Arial', sans-serif; /* Font family */
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff; 
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: bold;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #0056b3; /* Button background color on hover */
+}
+
+.tips-container {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.tips1, .tips2, .tips3, .tips4 {
+    font-size: 2rem;
+    color: #fff;
+    margin: 0 10px;
+}
